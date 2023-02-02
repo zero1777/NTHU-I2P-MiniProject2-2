@@ -19,11 +19,13 @@
 #include "LaserTurret.hpp"
 #include "MachineGunTurret.hpp"
 #include "MissileTurret.hpp"
+#include "PlugGunTurret.hpp"
 #include "Plane.hpp"
 #include "PlaneEnemy.hpp"
 #include "PlayScene.hpp"
 #include "Resources.hpp"
 #include "SoldierEnemy.hpp"
+#include "RedNormalEnemy.hpp"
 #include "Sprite.hpp"
 #include "TankEnemy.hpp"
 #include "Turret.hpp"
@@ -169,6 +171,9 @@ void PlayScene::Update(float deltaTime) {
 	// TODO 2 (7/8): You need to modify 'resources/enemy1.txt', or 'resources/enemy2.txt' to spawn the 4th enemy.
 	//         The format is "[EnemyId] [TimeDelay] [Repeat]".
 	// TODO 2 (8/8): Enable the creation of the 4th enemy.
+        case 4:
+            EnemyGroup->AddNewObject(enemy = new RedNormalEnemy(SpawnCoordinate.x, SpawnCoordinate.y));
+            break;
 		default:
 			continue;
 		}
@@ -292,6 +297,10 @@ void PlayScene::OnKeyDown(int keyCode) {
 		UIBtnClicked(2);
 	}
 	// TODO 2 (5/8): Make the R key to create the 4th turret.
+    else if (keyCode == ALLEGRO_KEY_R) {
+        // Hotkey for PlugGunTurret
+        UIBtnClicked(3);
+    }
 	else if (keyCode >= ALLEGRO_KEY_0 && keyCode <= ALLEGRO_KEY_9) {
 		// Hotkey for Speed up.
 		SpeedMult = keyCode - ALLEGRO_KEY_0;
@@ -389,6 +398,14 @@ void PlayScene::ConstructUI() {
 	btn->SetOnClickCallback(std::bind(&PlayScene::UIBtnClicked, this, 2));
 	UIGroup->AddNewControlObject(btn);
 	// TODO 2 (3/8): Create a button to support constructing the 4th tower.
+    // Button 4
+    btn = new TurretButton("play/floor.png", "play/dirt.png",
+            Engine::Sprite("play/tower-base.png", 1522, 136, 0, 0, 0, 0),
+            Engine::Sprite("play/turret-7.png", 1522, 136, 0, 0, 0, 0)
+            , 1522, 136, PlugGunTurret::Price);
+    btn->SetOnClickCallback(std::bind(&PlayScene::UIBtnClicked, this, 3));
+    UIGroup->AddNewControlObject(btn);
+    
 	int w = Engine::GameEngine::GetInstance().GetScreenSize().x;
 	int h = Engine::GameEngine::GetInstance().GetScreenSize().y;
 	int shift = 135 + 25;
@@ -408,7 +425,9 @@ void PlayScene::UIBtnClicked(int id) {
 		preview = new LaserTurret(0, 0);
 	else if (id == 2 && money >= MissileTurret::Price)
 		preview = new MissileTurret(0, 0);
-	// TODO 2 (4/8): On callback, create the 4th tower.
+    // TODO 2 (4/8): On callback, create the 4th tower.
+    else if (id == 3 && money >= PlugGunTurret::Price)
+        preview = new PlugGunTurret(0, 0);
 	if (!preview)
 		return;
 	preview->Position = Engine::GameEngine::GetInstance().GetMousePosition();
