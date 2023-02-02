@@ -481,6 +481,17 @@ std::vector<std::vector<int>> PlayScene::CalculateBFSDistance() {
 		// TODO 3 (1/1): Implement a BFS starting from the most right-bottom block in the map.
 		//               For each step you should assign the corresponding distance to the most right-bottom block.
 		//               mapState[y][x] is TILE_DIRT if it is empty.
+        for (auto &c : directions) {
+            int x = p.x + c.x;
+            int y = p.y + c.y;
+            if (x < 0 || x >= MapWidth || y < 0 || y >= MapHeight ||
+                map[y][x] != -1 || mapState[y][x] != TILE_DIRT) {
+                continue;
+            } else {
+                map[y][x] = map[p.y][p.x] + 1;
+                que.push(Engine::Point(x, y));
+            }
+        }
 	}
 	return map;
 }
