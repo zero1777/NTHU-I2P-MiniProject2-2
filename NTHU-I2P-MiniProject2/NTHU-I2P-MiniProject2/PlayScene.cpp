@@ -137,6 +137,7 @@ void PlayScene::Update(float deltaTime) {
 		if (enemyWaveData.empty()) {
 			if (EnemyGroup->GetObjects().empty()) {
 				// Free resources.
+                /*
 				delete TileMapGroup;
 				delete GroundEffectGroup;
 				delete DebugIndicatorGroup;
@@ -146,6 +147,7 @@ void PlayScene::Update(float deltaTime) {
 				delete EffectGroup;
 				delete UIGroup;
 				delete imgTarget;
+                */
 				// Win.
 				Engine::GameEngine::GetInstance().ChangeScene("win-scene");
 			}
