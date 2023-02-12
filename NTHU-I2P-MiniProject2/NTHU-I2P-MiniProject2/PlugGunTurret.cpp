@@ -7,6 +7,7 @@
 #include "Group.hpp"
 #include "PlugGunTurret.hpp"
 #include "PlayScene.hpp"
+#include "ShootEffect.hpp"
 #include "Point.hpp"
 
 const int PlugGunTurret::Price = 40;
@@ -22,5 +23,7 @@ void PlugGunTurret::CreateBullet() {
     Engine::Point normalized = diff.Normalize();
     // Change bullet position to the front of the gun barrel.
     getPlayScene()->BulletGroup->AddNewObject(new WoodBullet(Position + normalized * 36, diff, rotation, this));
+    // TODO 3
+    getPlayScene()->EffectGroup->AddNewObject(new ShootEffect((Position + normalized * 36).x, (Position + normalized * 36).y));
     AudioHelper::PlayAudio("gun.wav");
 }
