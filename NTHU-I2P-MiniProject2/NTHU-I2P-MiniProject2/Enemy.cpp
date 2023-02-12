@@ -32,7 +32,7 @@ void Enemy::OnExplode() {
 	}
 }
 Enemy::Enemy(std::string img, float x, float y, float radius, float speed, float hp, int money) :
-	Engine::Sprite(img, x, y), speed(speed), hp(hp), money(money) {
+	Engine::Sprite(img, x, y), speed(speed), hp(hp), money(money), maxSpeed(speed), slowRemainTime(0) {
 	CollisionRadius = radius;
 	reachEndTime = 0;
 }
@@ -84,6 +84,8 @@ void Enemy::UpdatePath(const std::vector<std::vector<int>>& mapDistance) {
 	path[0] = PlayScene::EndGridPoint;
 }
 void Enemy::Update(float deltaTime) {
+	// Slow effect.
+	SlowEffect(deltaTime);
 	// Pre-calculate the velocity.
 	float remainSpeed = speed * deltaTime;
 	while (remainSpeed != 0) {
@@ -123,3 +125,16 @@ void Enemy::Draw() const {
 		al_draw_circle(Position.x, Position.y, CollisionRadius, al_map_rgb(255, 0, 0), 2);
 	}
 }
+void Enemy::Slow(float slowFactor, float slowTime) {
+	speed = maxSpeed * slowFactor;
+	slowRemainTime = slowTime;
+}
+void Enemy::SlowEffect(float deltaTime) {
+	if (slowRemainTime > 0) {
+		slowRemainTime -= deltaTime;
+		if (slowRemainTime <= 0) {
+			speed = maxSpeed;
+		}
+	}
+}
+

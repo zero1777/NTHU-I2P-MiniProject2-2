@@ -16,18 +16,21 @@
 #include "IObject.hpp"
 #include "Image.hpp"
 #include "Label.hpp"
+// Turret
 #include "LaserTurret.hpp"
 #include "MachineGunTurret.hpp"
 #include "MissileTurret.hpp"
 #include "PlugGunTurret.hpp"
 #include "Plane.hpp"
+// Enemy
 #include "PlaneEnemy.hpp"
-#include "PlayScene.hpp"
-#include "Resources.hpp"
 #include "SoldierEnemy.hpp"
 #include "RedNormalEnemy.hpp"
-#include "Sprite.hpp"
 #include "TankEnemy.hpp"
+#include "DiceOneEnemy.hpp"
+#include "PlayScene.hpp"
+#include "Resources.hpp"
+#include "Sprite.hpp"
 #include "Turret.hpp"
 #include "TurretButton.hpp"
 #include "LOG.hpp"
@@ -161,14 +164,15 @@ void PlayScene::Update(float deltaTime) {
 		Enemy* enemy;
 		switch (current.first) {
 		case 1:
-			EnemyGroup->AddNewObject(enemy = new SoldierEnemy(SpawnCoordinate.x, SpawnCoordinate.y));
+			// EnemyGroup->AddNewObject(enemy = new SoldierEnemy(SpawnCoordinate.x, SpawnCoordinate.y));
+			EnemyGroup->AddNewObject(enemy = new DiceOneEnemy(SpawnCoordinate.x, SpawnCoordinate.y));
 			break;
-		case 2:
-			EnemyGroup->AddNewObject(enemy = new PlaneEnemy(SpawnCoordinate.x, SpawnCoordinate.y));
-			break;
-		case 3:
-			EnemyGroup->AddNewObject(enemy = new TankEnemy(SpawnCoordinate.x, SpawnCoordinate.y));
-			break;
+		// case 2:
+		// 	EnemyGroup->AddNewObject(enemy = new PlaneEnemy(SpawnCoordinate.x, SpawnCoordinate.y));
+		// 	break;
+		// case 3:
+		// 	EnemyGroup->AddNewObject(enemy = new TankEnemy(SpawnCoordinate.x, SpawnCoordinate.y));
+		// 	break;
 	// TODO 2 (7/8): You need to modify 'resources/enemy1.txt', or 'resources/enemy2.txt' to spawn the 4th enemy.
 	//         The format is "[EnemyId] [TimeDelay] [Repeat]".
 	// TODO 2 (8/8): Enable the creation of the 4th enemy.
@@ -375,37 +379,42 @@ void PlayScene::ConstructUI() {
 	UIGroup->AddNewObject(new Engine::Label(std::string("Stage ") + std::to_string(MapId), "pirulen.ttf", 32, 1294, 0));
 	UIGroup->AddNewObject(UIMoney = new Engine::Label(std::string("$") + std::to_string(money), "pirulen.ttf", 24, 1294, 48));
 	UIGroup->AddNewObject(UILives = new Engine::Label(std::string("Life ") + std::to_string(lives), "pirulen.ttf", 24, 1294, 88));
-	TurretButton* btn;
+	// Buttons
+	ConstructButton(0, "play/turret-6.png", PlugGunTurret::Price);
+	ConstructButton(1, "play/turret-1.png", MachineGunTurret::Price);
+	// ConstructButton(1, "play/turret-2.png", LaserTurret::Price);
+	// ConstructButton(2, "play/turret-3.png", MissileTurret::Price);
+	// TurretButton* btn;
 	// Button 1
-	btn = new TurretButton("play/floor.png", "play/dirt.png",
-		Engine::Sprite("play/tower-base.png", 1294, 136, 0, 0, 0, 0),
-		Engine::Sprite("play/turret-1.png", 1294, 136 - 8, 0, 0, 0, 0)
-		, 1294, 136, MachineGunTurret::Price);
-	// Reference: Class Member Function Pointer and std::bind.
-	btn->SetOnClickCallback(std::bind(&PlayScene::UIBtnClicked, this, 0));
-	UIGroup->AddNewControlObject(btn);
-	// Button 2
-	btn = new TurretButton("play/floor.png", "play/dirt.png",
-		Engine::Sprite("play/tower-base.png", 1370, 136, 0, 0, 0, 0),
-		Engine::Sprite("play/turret-2.png", 1370, 136 - 8, 0, 0, 0, 0)
-		, 1370, 136, LaserTurret::Price);
-	btn->SetOnClickCallback(std::bind(&PlayScene::UIBtnClicked, this, 1));
-	UIGroup->AddNewControlObject(btn);
-	// Button 3
-	btn = new TurretButton("play/floor.png", "play/dirt.png",
-		Engine::Sprite("play/tower-base.png", 1446, 136, 0, 0, 0, 0),
-		Engine::Sprite("play/turret-3.png", 1446, 136, 0, 0, 0, 0)
-		, 1446, 136, MissileTurret::Price);
-	btn->SetOnClickCallback(std::bind(&PlayScene::UIBtnClicked, this, 2));
-	UIGroup->AddNewControlObject(btn);
-	// TODO 2 (3/8): Create a button to support constructing the 4th tower.
-    // Button 4
-    btn = new TurretButton("play/floor.png", "play/dirt.png",
-            Engine::Sprite("play/tower-base.png", 1522, 136, 0, 0, 0, 0),
-            Engine::Sprite("play/turret-7.png", 1522, 136, 0, 0, 0, 0)
-            , 1522, 136, PlugGunTurret::Price);
-    btn->SetOnClickCallback(std::bind(&PlayScene::UIBtnClicked, this, 3));
-    UIGroup->AddNewControlObject(btn);
+	// btn = new TurretButton("play/floor.png", "play/dirt.png",
+	// 	Engine::Sprite("play/tower-base.png", 1294, 136, 0, 0, 0, 0),
+	// 	Engine::Sprite("play/turret-1.png", 1294, 136 - 8, 0, 0, 0, 0)
+	// 	, 1294, 136, MachineGunTurret::Price);
+	// // Reference: Class Member Function Pointer and std::bind.
+	// btn->SetOnClickCallback(std::bind(&PlayScene::UIBtnClicked, this, 0));
+	// UIGroup->AddNewControlObject(btn);
+	// // Button 2
+	// btn = new TurretButton("play/floor.png", "play/dirt.png",
+	// 	Engine::Sprite("play/tower-base.png", 1370, 136, 0, 0, 0, 0),
+	// 	Engine::Sprite("play/turret-2.png", 1370, 136 - 8, 0, 0, 0, 0)
+	// 	, 1370, 136, LaserTurret::Price);
+	// btn->SetOnClickCallback(std::bind(&PlayScene::UIBtnClicked, this, 1));
+	// UIGroup->AddNewControlObject(btn);
+	// // Button 3
+	// btn = new TurretButton("play/floor.png", "play/dirt.png",
+	// 	Engine::Sprite("play/tower-base.png", 1446, 136, 0, 0, 0, 0),
+	// 	Engine::Sprite("play/turret-3.png", 1446, 136, 0, 0, 0, 0)
+	// 	, 1446, 136, MissileTurret::Price);
+	// btn->SetOnClickCallback(std::bind(&PlayScene::UIBtnClicked, this, 2));
+	// UIGroup->AddNewControlObject(btn);
+	// // TODO 2 (3/8): Create a button to support constructing the 4th tower.
+    // // Button 4
+    // btn = new TurretButton("play/floor.png", "play/dirt.png",
+    //         Engine::Sprite("play/tower-base.png", 1522, 136, 0, 0, 0, 0),
+    //         Engine::Sprite("play/turret-7.png", 1522, 136, 0, 0, 0, 0)
+    //         , 1522, 136, PlugGunTurret::Price);
+    // btn->SetOnClickCallback(std::bind(&PlayScene::UIBtnClicked, this, 3));
+    // UIGroup->AddNewControlObject(btn);
     
 	int w = Engine::GameEngine::GetInstance().GetScreenSize().x;
 	int h = Engine::GameEngine::GetInstance().GetScreenSize().y;
@@ -415,20 +424,35 @@ void PlayScene::ConstructUI() {
 	UIGroup->AddNewObject(dangerIndicator);
 }
 
+void PlayScene::ConstructButton(int id, std::string sprite, int price) {
+	TurretButton* btn;
+	btn = new TurretButton("play/floor.png", "play/dirt.png",
+		Engine::Sprite("play/tower-base.png", 1294 + id * 76, 136, 0, 0, 0, 0),
+		Engine::Sprite(sprite, 1294 + id * 76, 136 - 8, 0, 0, 0, 0)
+		, 1294 + id * 76, 136, price);
+	// Reference: Class Member Function Pointer and std::bind.
+	btn->SetOnClickCallback(std::bind(&PlayScene::UIBtnClicked, this, id));
+	UIGroup->AddNewControlObject(btn);
+}
+
 void PlayScene::UIBtnClicked(int id) {
 	if (preview) {
 		UIGroup->RemoveObject(preview->GetObjectIterator());
         preview = nullptr;
     }
-	if (id == 0 && money >= MachineGunTurret::Price)
+	if (id == 0 && money >= PlugGunTurret::Price) 
+		preview = new PlugGunTurret(0, 0);
+	else if (id == 1 && money >= MachineGunTurret::Price)
 		preview = new MachineGunTurret(0, 0);
-	else if (id == 1 && money >= LaserTurret::Price)
-		preview = new LaserTurret(0, 0);
-	else if (id == 2 && money >= MissileTurret::Price)
-		preview = new MissileTurret(0, 0);
-    // TODO 2 (4/8): On callback, create the 4th tower.
-    else if (id == 3 && money >= PlugGunTurret::Price)
-        preview = new PlugGunTurret(0, 0);
+	// if (id == 0 && money >= MachineGunTurret::Price)
+	// 	preview = new MachineGunTurret(0, 0);
+	// else if (id == 1 && money >= LaserTurret::Price)
+	// 	preview = new LaserTurret(0, 0);
+	// else if (id == 2 && money >= MissileTurret::Price)
+	// 	preview = new MissileTurret(0, 0);
+    // // TODO 2 (4/8): On callback, create the 4th tower.
+    // else if (id == 3 && money >= PlugGunTurret::Price)
+    //     preview = new PlugGunTurret(0, 0);
 	if (!preview)
 		return;
 	preview->Position = Engine::GameEngine::GetInstance().GetMousePosition();

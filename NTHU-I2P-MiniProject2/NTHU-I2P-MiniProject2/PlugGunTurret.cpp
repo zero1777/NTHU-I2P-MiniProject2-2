@@ -12,8 +12,8 @@
 const int PlugGunTurret::Price = 40;
 PlugGunTurret::PlugGunTurret(float x, float y) :
     // TODO 2 (2/8): You can imitate the 2 files: 'MachineGunTurret.hpp', 'MachineGunTurret.cpp' to create a new turret.
-    Turret("play/tower-base.png", "play/turret-7.png", x, y, 200, Price, 0.5) {
-    // Move center downward, since we the turret head is slightly biased upward.
+    Turret("play/tower-base.png", "play/turret-6.png", x, y, 200, Price, 1.5) {
+    // Move center downward, since we the turret head is slightly biased upward
     Anchor.y += 8.0f / GetBitmapHeight();
 }
 void PlugGunTurret::CreateBullet() {
