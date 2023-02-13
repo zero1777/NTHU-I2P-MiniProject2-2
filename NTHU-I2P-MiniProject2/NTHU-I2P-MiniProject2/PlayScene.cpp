@@ -28,6 +28,7 @@
 #include "RedNormalEnemy.hpp"
 #include "TankEnemy.hpp"
 #include "DiceOneEnemy.hpp"
+#include "DiceTwoEnemy.hpp"
 #include "PlayScene.hpp"
 #include "Resources.hpp"
 #include "Sprite.hpp"
@@ -168,9 +169,9 @@ void PlayScene::Update(float deltaTime) {
 			// EnemyGroup->AddNewObject(enemy = new SoldierEnemy(SpawnCoordinate.x, SpawnCoordinate.y));
 			EnemyGroup->AddNewObject(enemy = new DiceOneEnemy(SpawnCoordinate.x, SpawnCoordinate.y));
 			break;
-		// case 2:
-		// 	EnemyGroup->AddNewObject(enemy = new PlaneEnemy(SpawnCoordinate.x, SpawnCoordinate.y));
-		// 	break;
+		case 2:
+			EnemyGroup->AddNewObject(enemy = new DiceTwoEnemy(SpawnCoordinate.x, SpawnCoordinate.y));
+			break;
 		// case 3:
 		// 	EnemyGroup->AddNewObject(enemy = new TankEnemy(SpawnCoordinate.x, SpawnCoordinate.y));
 		// 	break;
