@@ -60,6 +60,7 @@ public:
 	std::vector<std::vector<int>> mapDistance;
 	std::list<std::pair<int, float>> enemyWaveData;
 	std::list<int> keyStrokes;
+	std::vector<std::pair<int, Engine::Point>> newEnemies;
 	static Engine::Point GetClientSize();
 	explicit PlayScene() = default;
 	void Initialize() override;
@@ -79,6 +80,8 @@ public:
 	void ConstructButton(int id, std::string sprite, int price);
 	void UIBtnClicked(int id);
 	bool CheckSpaceValid(int x, int y);
+	void GenNewEnemy(int type, Engine::Point pos);
+
 	std::vector<std::vector<int>> CalculateBFSDistance();
 	// void ModifyReadMapTiles();
 };

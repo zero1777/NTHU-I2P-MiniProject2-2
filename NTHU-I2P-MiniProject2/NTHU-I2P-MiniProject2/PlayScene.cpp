@@ -188,6 +188,16 @@ void PlayScene::Update(float deltaTime) {
 		// Compensate the time lost.
 		enemy->Update(ticks);
 	}
+	// new enemies
+	for (auto info : newEnemies) {
+		Enemy *enemy;
+		if (info.first == 1) {
+			EnemyGroup->AddNewObject(enemy = new DiceOneEnemy(info.second.x, info.second.y));
+		}
+		enemy->UpdatePath(mapDistance);
+	}
+	newEnemies.clear();
+	// preview
 	if (preview) {
 		preview->Position = Engine::GameEngine::GetInstance().GetMousePosition();
 		// To keep responding when paused.
@@ -521,4 +531,7 @@ std::vector<std::vector<int>> PlayScene::CalculateBFSDistance() {
         }
 	}
 	return map;
+}
+void PlayScene::GenNewEnemy(int type, Engine::Point pos) {
+	newEnemies.push_back(std::make_pair(type, pos));
 }
