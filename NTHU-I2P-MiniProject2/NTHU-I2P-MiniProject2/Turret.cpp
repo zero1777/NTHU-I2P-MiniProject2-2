@@ -16,8 +16,18 @@ PlayScene* Turret::getPlayScene() {
 	return dynamic_cast<PlayScene*>(Engine::GameEngine::GetInstance().GetActiveScene());
 }
 Turret::Turret(std::string imgBase, std::string imgTurret, float x, float y, float radius, int price, float coolDown) :
-	Sprite(imgTurret, x, y), price(price), coolDown(coolDown), imgBase(imgBase, x, y) {
+	Sprite(imgTurret, x, y), price(price), coolDown(coolDown), imgBase(imgBase, x, y), level(0) {
 	CollisionRadius = radius;
+}
+Turret::Turret(std::string imgBase, std::string imgTurret, float x, float y, float radius, int price, float coolDown, int level) :
+	Sprite(imgTurret, x, y), price(price), coolDown(coolDown), imgBase(imgBase, x, y), level(level) {
+	CollisionRadius = radius;
+}
+void Turret::Destroy() {
+	int x = static_cast<int>(floor(Position.x / PlayScene::BlockSize));
+	int y = static_cast<int>(floor(Position.y / PlayScene::BlockSize));
+	getPlayScene()->ResetMapState(x, y);
+	getPlayScene()->TowerGroup->RemoveObject(objectIterator);
 }
 void Turret::Update(float deltaTime) {
 	Sprite::Update(deltaTime);
@@ -86,4 +96,7 @@ void Turret::Draw() const {
 }
 int Turret::GetPrice() const {
 	return price;
+}
+int Turret::GetLevel() const {
+	return level;
 }

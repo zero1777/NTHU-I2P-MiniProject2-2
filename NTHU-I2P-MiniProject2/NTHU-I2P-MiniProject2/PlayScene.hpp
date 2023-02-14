@@ -55,6 +55,7 @@ public:
 	Engine::Label* UILives;
 	Engine::Image* imgTarget;
 	Engine::Sprite* dangerIndicator;
+	Engine::Sprite* view;
 	Turret* preview;
 	std::vector<std::vector<TileType>> mapState;
 	std::vector<std::vector<int>> mapDistance;
@@ -79,8 +80,10 @@ public:
 	void ConstructUI();
 	void ConstructButton(int id, std::string sprite, int price);
 	void UIBtnClicked(int id);
+	void UIToolClicked(int id);
 	bool CheckSpaceValid(int x, int y);
 	void GenNewEnemy(int type, Engine::Point pos);
+	void ResetMapState(int x, int y);
 
 	std::vector<std::vector<int>> CalculateBFSDistance();
 	// void ModifyReadMapTiles();

@@ -34,6 +34,7 @@
 #include "Sprite.hpp"
 #include "Turret.hpp"
 #include "TurretButton.hpp"
+#include "ToolButton.hpp"
 #include "LOG.hpp"
 
 bool PlayScene::DebugMode = false;
@@ -75,6 +76,7 @@ void PlayScene::Initialize() {
 	imgTarget = new Engine::Image("play/target.png", 0, 0);
 	imgTarget->Visible = false;
 	preview = nullptr;
+	view = nullptr;
 	UIGroup->AddNewObject(imgTarget);
 	// Preload Lose Scene
 	deathBGMInstance = Engine::Resources::GetInstance().GetSampleInstance("astronomia.ogg");
@@ -203,6 +205,10 @@ void PlayScene::Update(float deltaTime) {
 		// To keep responding when paused.
 		preview->Update(deltaTime);
 	}
+	// view
+	if (view) {
+		view->Position = Engine::GameEngine::GetInstance().GetMousePosition();
+	}
 }
 void PlayScene::Draw() const {
 	IScene::Draw();
@@ -226,6 +232,14 @@ void PlayScene::OnMouseDown(int button, int mx, int my) {
 		UIGroup->RemoveObject(preview->GetObjectIterator());
 		preview = nullptr;
 	}
+	if ((button & 1) && view) {
+		int x = mx / BlockSize;
+		int y = my / BlockSize;
+		if (x < 0 || x >= MapWidth || y < 0 || y >= MapHeight) {
+			UIGroup->RemoveObject(view->GetObjectIterator());
+			view = nullptr;
+		}
+	}
 	IScene::OnMouseDown(button, mx, my);
 }
 void PlayScene::OnMouseMove(int mx, int my) {
@@ -236,13 +250,17 @@ void PlayScene::OnMouseMove(int mx, int my) {
 		imgTarget->Visible = false;
 		return;
 	}
+	if (view) {
+		imgTarget->Visible = false;
+		return ;
+	} 
 	imgTarget->Visible = true;
 	imgTarget->Position.x = x * BlockSize;
 	imgTarget->Position.y = y * BlockSize;
 }
 void PlayScene::OnMouseUp(int button, int mx, int my) {
 	IScene::OnMouseUp(button, mx, my);
-	if (!imgTarget->Visible)
+	if (!imgTarget->Visible && !view)
 		return;
 	const int x = mx / BlockSize;
 	const int y = my / BlockSize;
@@ -275,6 +293,23 @@ void PlayScene::OnMouseUp(int button, int mx, int my) {
 			preview = nullptr;
 
 			mapState[y][x] = TILE_OCCUPIED;
+			OnMouseMove(mx, my);
+		} else { // mapState[y][x] = TILE_OCCUPIED
+			if (!view)
+				return ;
+			// Remove view
+			view->GetObjectIterator()->first = false;
+			UIGroup->RemoveObject(view->GetObjectIterator());
+			view = nullptr;
+			for (auto &it : TowerGroup->GetObjects()) {
+				Turret *turret = dynamic_cast<Turret*>(it);
+				int tx = static_cast<int>(floor(turret->Position.x / BlockSize));
+				int ty = static_cast<int>(floor(turret->Position.y / BlockSize));
+				if (tx == x && ty == y) {
+					EarnMoney(turret->GetPrice() / 2);
+					turret->Destroy();
+				}
+			}
 			OnMouseMove(mx, my);
 		}
 	}
@@ -324,8 +359,8 @@ void PlayScene::OnKeyDown(int keyCode) {
 	}
 }
 void PlayScene::Hit() {
-	UILives->Text = std::string("Life ") + std::to_string(lives);
 	lives--;
+	UILives->Text = std::string("Life ") + std::to_string(lives);
 	if (lives <= 0) {
 		Engine::GameEngine::GetInstance().ChangeScene("lose");
 	}
@@ -412,10 +447,10 @@ void PlayScene::ConstructUI() {
 	// 	, 1370, 136, LaserTurret::Price);
 	// btn->SetOnClickCallback(std::bind(&PlayScene::UIBtnClicked, this, 1));
 	// UIGroup->AddNewControlObject(btn);
-	// // Button 3
+	// Button 3
 	// btn = new TurretButton("play/floor.png", "play/dirt.png",
 	// 	Engine::Sprite("play/tower-base.png", 1446, 136, 0, 0, 0, 0),
-	// 	Engine::Sprite("play/turret-3.png", 1446, 136, 0, 0, 0, 0)
+	// 	Engine::Sprite("play/shovel.png", 1446, 136, 0, 0, 0, 0)
 	// 	, 1446, 136, MissileTurret::Price);
 	// btn->SetOnClickCallback(std::bind(&PlayScene::UIBtnClicked, this, 2));
 	// UIGroup->AddNewControlObject(btn);
@@ -427,6 +462,17 @@ void PlayScene::ConstructUI() {
     //         , 1522, 136, PlugGunTurret::Price);
     // btn->SetOnClickCallback(std::bind(&PlayScene::UIBtnClicked, this, 3));
     // UIGroup->AddNewControlObject(btn);
+	ToolButton *btn;
+	// shovel
+	btn = new ToolButton("play/floor.png", "play/dirt.png", 
+	Engine::Sprite("play/shovel.png", 1294, 212, 0, 0, 0, 0), 1294, 212);
+	btn->SetOnClickCallback(std::bind(&PlayScene::UIToolClicked, this, 0));
+	UIGroup->AddNewControlObject(btn);
+	// move
+	btn = new ToolButton("play/floor.png", "play/dirt.png", 
+	Engine::Sprite("play/move.png", 1370, 212, 0, 0, 0, 0), 1370, 212);
+	btn->SetOnClickCallback(std::bind(&PlayScene::UIToolClicked, this, 1));
+	UIGroup->AddNewControlObject(btn);
     
 	int w = Engine::GameEngine::GetInstance().GetScreenSize().x;
 	int h = Engine::GameEngine::GetInstance().GetScreenSize().y;
@@ -472,6 +518,21 @@ void PlayScene::UIBtnClicked(int id) {
 	preview->Enabled = false;
 	preview->Preview = true;
 	UIGroup->AddNewObject(preview);
+	OnMouseMove(Engine::GameEngine::GetInstance().GetMousePosition().x, Engine::GameEngine::GetInstance().GetMousePosition().y);
+}
+
+void PlayScene::UIToolClicked(int id) {
+	if (view) {
+		UIGroup->RemoveObject(view->GetObjectIterator());
+		view = nullptr;
+	}
+	if (id == 0) 
+		view = new Engine::Sprite("play/shovel.png", 0, 0);
+	else if (id == 1) 
+		view = new Engine::Sprite("play/move.png", 0, 0);
+	view->Position = Engine::GameEngine::GetInstance().GetMousePosition();
+	view->Tint = al_map_rgba(255, 255, 255, 200);
+	UIGroup->AddNewObject(view);
 	OnMouseMove(Engine::GameEngine::GetInstance().GetMousePosition().x, Engine::GameEngine::GetInstance().GetMousePosition().y);
 }
 
@@ -534,4 +595,7 @@ std::vector<std::vector<int>> PlayScene::CalculateBFSDistance() {
 }
 void PlayScene::GenNewEnemy(int type, Engine::Point pos) {
 	newEnemies.push_back(std::make_pair(type, pos));
+}
+void PlayScene::ResetMapState(int x, int y) {
+	mapState[y][x] = TILE_FLOOR;
 }
