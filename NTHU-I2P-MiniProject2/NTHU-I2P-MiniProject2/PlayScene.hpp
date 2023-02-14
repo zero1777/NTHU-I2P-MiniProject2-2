@@ -40,6 +40,7 @@ public:
 	static const Engine::Point EndGridPoint;
 	static const std::vector<int> code;
 	int MapId;
+	int viewType;
 	float ticks;
 	float deathCountDown;
 	// Map tiles.

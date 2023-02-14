@@ -77,6 +77,7 @@ void PlayScene::Initialize() {
 	imgTarget->Visible = false;
 	preview = nullptr;
 	view = nullptr;
+	viewType = -1;
 	UIGroup->AddNewObject(imgTarget);
 	// Preload Lose Scene
 	deathBGMInstance = Engine::Resources::GetInstance().GetSampleInstance("astronomia.ogg");
@@ -238,6 +239,7 @@ void PlayScene::OnMouseDown(int button, int mx, int my) {
 		if (x < 0 || x >= MapWidth || y < 0 || y >= MapHeight) {
 			UIGroup->RemoveObject(view->GetObjectIterator());
 			view = nullptr;
+			viewType = -1;
 		}
 	}
 	IScene::OnMouseDown(button, mx, my);
@@ -265,53 +267,137 @@ void PlayScene::OnMouseUp(int button, int mx, int my) {
 	const int x = mx / BlockSize;
 	const int y = my / BlockSize;
 	if (button & 1) {
-		if (mapState[y][x] != TILE_OCCUPIED) {
-			if (!preview)
-				return;
-			// Check if valid.
-			if (!CheckSpaceValid(x, y)) {
-				Engine::Sprite* sprite;
-				GroundEffectGroup->AddNewObject(sprite = new DirtyEffect("play/target-invalid.png", 1, x * BlockSize + BlockSize / 2, y * BlockSize + BlockSize / 2));
-				sprite->Rotation = 0;
-				return;
-			}
-			// Purchase.
-			EarnMoney(-preview->GetPrice());
-			// Remove Preview.
-			preview->GetObjectIterator()->first = false;
-			UIGroup->RemoveObject(preview->GetObjectIterator());
-			// Construct real turret.
-			preview->Position.x = x * BlockSize + BlockSize / 2;
-			preview->Position.y = y * BlockSize + BlockSize / 2;
-			preview->Enabled = true;
-			preview->Preview = false;
-			preview->Tint = al_map_rgba(255, 255, 255, 255);
-			TowerGroup->AddNewObject(preview);
-			// To keep responding when paused.
-			preview->Update(0);
-			// Remove Preview.
-			preview = nullptr;
-
-			mapState[y][x] = TILE_OCCUPIED;
-			OnMouseMove(mx, my);
-		} else { // mapState[y][x] = TILE_OCCUPIED
-			if (!view)
-				return ;
-			// Remove view
-			view->GetObjectIterator()->first = false;
-			UIGroup->RemoveObject(view->GetObjectIterator());
-			view = nullptr;
-			for (auto &it : TowerGroup->GetObjects()) {
-				Turret *turret = dynamic_cast<Turret*>(it);
-				int tx = static_cast<int>(floor(turret->Position.x / BlockSize));
-				int ty = static_cast<int>(floor(turret->Position.y / BlockSize));
-				if (tx == x && ty == y) {
-					EarnMoney(turret->GetPrice() / 2);
-					turret->Destroy();
+		if (!preview && !view) return ;
+		if (preview) {
+			if (mapState[y][x] != TILE_OCCUPIED) {
+				// Check if valid.
+				if (!CheckSpaceValid(x, y)) {
+					Engine::Sprite* sprite;
+					GroundEffectGroup->AddNewObject(sprite = new DirtyEffect("play/target-invalid.png", 1, x * BlockSize + BlockSize / 2, y * BlockSize + BlockSize / 2));
+					sprite->Rotation = 0;
+					return;
 				}
+				// Purchase.
+				if (!preview->Moved)
+					EarnMoney(-preview->GetPrice());
+				// Remove Preview.
+				preview->GetObjectIterator()->first = false;
+				UIGroup->RemoveObject(preview->GetObjectIterator());
+				// Construct real turret.
+				preview->Position.x = x * BlockSize + BlockSize / 2;
+				preview->Position.y = y * BlockSize + BlockSize / 2;
+				preview->Enabled = true;
+				preview->Preview = false;
+				preview->Tint = al_map_rgba(255, 255, 255, 255);
+				TowerGroup->AddNewObject(preview);
+				// To keep responding when paused.
+				preview->Update(0);
+				// Remove Preview.
+				preview = nullptr;
+
+				mapState[y][x] = TILE_OCCUPIED;
+				OnMouseMove(mx, my);
+			} else { // mapState[y][x] = TILE_OCCUPIED
+
 			}
-			OnMouseMove(mx, my);
 		}
+		if (view) {
+			if (mapState[y][x] == TILE_OCCUPIED) {
+				if (viewType == 0) { // shovel
+					// Remove view
+					view->GetObjectIterator()->first = false;
+					UIGroup->RemoveObject(view->GetObjectIterator());
+					view = nullptr;
+					viewType = -1;
+					for (auto &it : TowerGroup->GetObjects()) {
+						Turret *turret = dynamic_cast<Turret*>(it);
+						int tx = static_cast<int>(floor(turret->Position.x / BlockSize));
+						int ty = static_cast<int>(floor(turret->Position.y / BlockSize));
+						if (tx == x && ty == y) {
+							EarnMoney(turret->GetPrice() / 2);
+							turret->Destroy();
+						}
+					}
+					OnMouseMove(mx, my);
+				} else if (viewType == 1) { // move
+					// Remove view 
+					view->GetObjectIterator()->first = false;
+					UIGroup->RemoveObject(view->GetObjectIterator());
+					view = nullptr;
+					viewType = -1;
+					for (auto &it : TowerGroup->GetObjects()) {
+						Turret *turret = dynamic_cast<Turret*>(it);
+						int tx = static_cast<int>(floor(turret->Position.x / BlockSize));
+						int ty = static_cast<int>(floor(turret->Position.y / BlockSize));
+						if (tx == x && ty == y) {
+							if (turret->GetLevel() == 0) {
+								preview = new PlugGunTurret(0, 0);
+							} else if (turret->GetLevel() == 1) {
+								preview = new MachineGunTurret(0, 0);
+							} else if (turret->GetLevel() == 2) {
+								// todo
+							}
+							preview->Position = Engine::GameEngine::GetInstance().GetMousePosition();
+							preview->Tint = al_map_rgba(255, 255, 255, 200);
+							preview->Enabled = false;
+							preview->Preview = true;
+							preview->Moved = true;
+							UIGroup->AddNewObject(preview);
+							turret->Destroy();
+						}
+					}
+					OnMouseMove(mx, my);
+				}
+			} 
+		}
+		// -----------
+		// if (mapState[y][x] != TILE_OCCUPIED) {
+		// 	if (!preview)
+		// 		return;
+		// 	// Check if valid.
+		// 	if (!CheckSpaceValid(x, y)) {
+		// 		Engine::Sprite* sprite;
+		// 		GroundEffectGroup->AddNewObject(sprite = new DirtyEffect("play/target-invalid.png", 1, x * BlockSize + BlockSize / 2, y * BlockSize + BlockSize / 2));
+		// 		sprite->Rotation = 0;
+		// 		return;
+		// 	}
+		// 	// Purchase.
+		// 	EarnMoney(-preview->GetPrice());
+		// 	// Remove Preview.
+		// 	preview->GetObjectIterator()->first = false;
+		// 	UIGroup->RemoveObject(preview->GetObjectIterator());
+		// 	// Construct real turret.
+		// 	preview->Position.x = x * BlockSize + BlockSize / 2;
+		// 	preview->Position.y = y * BlockSize + BlockSize / 2;
+		// 	preview->Enabled = true;
+		// 	preview->Preview = false;
+		// 	preview->Tint = al_map_rgba(255, 255, 255, 255);
+		// 	TowerGroup->AddNewObject(preview);
+		// 	// To keep responding when paused.
+		// 	preview->Update(0);
+		// 	// Remove Preview.
+		// 	preview = nullptr;
+
+		// 	mapState[y][x] = TILE_OCCUPIED;
+		// 	OnMouseMove(mx, my);
+		// } else { // mapState[y][x] = TILE_OCCUPIED
+		// 	if (!view)
+		// 		return ;
+		// 	// Remove view
+		// 	view->GetObjectIterator()->first = false;
+		// 	UIGroup->RemoveObject(view->GetObjectIterator());
+		// 	view = nullptr;
+		// 	for (auto &it : TowerGroup->GetObjects()) {
+		// 		Turret *turret = dynamic_cast<Turret*>(it);
+		// 		int tx = static_cast<int>(floor(turret->Position.x / BlockSize));
+		// 		int ty = static_cast<int>(floor(turret->Position.y / BlockSize));
+		// 		if (tx == x && ty == y) {
+		// 			EarnMoney(turret->GetPrice() / 2);
+		// 			turret->Destroy();
+		// 		}
+		// 	}
+		// 	OnMouseMove(mx, my);
+		// }
 	}
 }
 void PlayScene::OnKeyDown(int keyCode) {
@@ -525,11 +611,13 @@ void PlayScene::UIToolClicked(int id) {
 	if (view) {
 		UIGroup->RemoveObject(view->GetObjectIterator());
 		view = nullptr;
+		viewType = -1;
 	}
 	if (id == 0) 
 		view = new Engine::Sprite("play/shovel.png", 0, 0);
 	else if (id == 1) 
 		view = new Engine::Sprite("play/move.png", 0, 0);
+	viewType = id;
 	view->Position = Engine::GameEngine::GetInstance().GetMousePosition();
 	view->Tint = al_map_rgba(255, 255, 255, 200);
 	UIGroup->AddNewObject(view);
