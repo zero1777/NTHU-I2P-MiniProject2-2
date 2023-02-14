@@ -19,6 +19,7 @@
 // Turret
 #include "LaserTurret.hpp"
 #include "MachineGunTurret.hpp"
+#include "RedMachineGunTurret.hpp"
 #include "MissileTurret.hpp"
 #include "PlugGunTurret.hpp"
 #include "Plane.hpp"
@@ -57,7 +58,7 @@ void PlayScene::Initialize() {
 	ticks = 0;
 	deathCountDown = -1;
 	lives = 10;
-	money = 150;
+	money = 1500;
 	SpeedMult = 1;
 	// Add groups from bottom to top.
 	AddNewObject(TileMapGroup = new Group());
@@ -297,8 +298,32 @@ void PlayScene::OnMouseUp(int button, int mx, int my) {
 
 				mapState[y][x] = TILE_OCCUPIED;
 				OnMouseMove(mx, my);
-			} else { // mapState[y][x] = TILE_OCCUPIED
-
+			} else if (preview->GetLevel() == 1) { // mapState[y][x] = TILE_OCCUPIED & possible upgrade
+				for (auto &it : TowerGroup->GetObjects()) {
+					Turret *turret = dynamic_cast<Turret*>(it);
+					int tx = static_cast<int>(floor(turret->Position.x / BlockSize));
+					int ty = static_cast<int>(floor(turret->Position.y / BlockSize));
+					if (tx == x && ty == y) {
+						if (turret->GetLevel() == 1) {
+							turret->Destroy();
+							// Remove Preview.
+							preview->GetObjectIterator()->first = false;
+							UIGroup->RemoveObject(preview->GetObjectIterator());	
+							preview = nullptr;
+							// Construct real turret
+							Turret *newTurret = new RedMachineGunTurret(0, 0);
+							EarnMoney(-newTurret->GetPrice());
+							newTurret->Position.x = x * BlockSize + BlockSize / 2;
+							newTurret->Position.y = y * BlockSize + BlockSize / 2;
+							newTurret->Enabled = true;
+							newTurret->Preview = false;
+							newTurret->Tint = al_map_rgba(255, 255, 255, 255);
+							TowerGroup->AddNewObject(newTurret);	
+						}	
+					}
+				}
+				mapState[y][x] = TILE_OCCUPIED;
+				OnMouseMove(mx, my);
 			}
 		}
 		if (view) {
@@ -335,7 +360,7 @@ void PlayScene::OnMouseUp(int button, int mx, int my) {
 							} else if (turret->GetLevel() == 1) {
 								preview = new MachineGunTurret(0, 0);
 							} else if (turret->GetLevel() == 2) {
-								// todo
+								preview = new RedMachineGunTurret(0, 0);
 							}
 							preview->Position = Engine::GameEngine::GetInstance().GetMousePosition();
 							preview->Tint = al_map_rgba(255, 255, 255, 200);
