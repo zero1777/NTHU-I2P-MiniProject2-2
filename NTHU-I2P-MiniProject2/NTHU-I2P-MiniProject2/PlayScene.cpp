@@ -20,6 +20,7 @@
 #include "LaserTurret.hpp"
 #include "MachineGunTurret.hpp"
 #include "RedMachineGunTurret.hpp"
+#include "RocketTurret.hpp"
 #include "MissileTurret.hpp"
 #include "PlugGunTurret.hpp"
 #include "Plane.hpp"
@@ -170,7 +171,6 @@ void PlayScene::Update(float deltaTime) {
 		Enemy* enemy;
 		switch (current.first) {
 		case 1:
-			// EnemyGroup->AddNewObject(enemy = new SoldierEnemy(SpawnCoordinate.x, SpawnCoordinate.y));
 			EnemyGroup->AddNewObject(enemy = new DiceOneEnemy(SpawnCoordinate.x, SpawnCoordinate.y));
 			break;
 		case 2:
@@ -293,6 +293,11 @@ void PlayScene::OnMouseUp(int button, int mx, int my) {
 				TowerGroup->AddNewObject(preview);
 				// To keep responding when paused.
 				preview->Update(0);
+				// Only for Rocket Turret.
+				if (preview->GetLevel() == 3) {
+					RocketTurret *tmp = dynamic_cast<RocketTurret*>(preview);
+					tmp->Activate();
+				}
 				// Remove Preview.
 				preview = nullptr;
 
@@ -340,6 +345,10 @@ void PlayScene::OnMouseUp(int button, int mx, int my) {
 						int ty = static_cast<int>(floor(turret->Position.y / BlockSize));
 						if (tx == x && ty == y) {
 							EarnMoney(turret->GetPrice() / 2);
+							if (turret->GetLevel() == 3) {
+								RocketTurret *tmp = dynamic_cast<RocketTurret*>(turret);
+								tmp->Deactivate();
+							}
 							turret->Destroy();
 						}
 					}
@@ -361,6 +370,8 @@ void PlayScene::OnMouseUp(int button, int mx, int my) {
 								preview = new MachineGunTurret(0, 0);
 							} else if (turret->GetLevel() == 2) {
 								preview = new RedMachineGunTurret(0, 0);
+							} else if (turret->GetLevel() == 3) {
+								preview = new RocketTurret(0, 0);
 							}
 							preview->Position = Engine::GameEngine::GetInstance().GetMousePosition();
 							preview->Tint = al_map_rgba(255, 255, 255, 200);
@@ -368,6 +379,10 @@ void PlayScene::OnMouseUp(int button, int mx, int my) {
 							preview->Preview = true;
 							preview->Moved = true;
 							UIGroup->AddNewObject(preview);
+							if (turret->GetLevel() == 3) {
+								RocketTurret *tmp = dynamic_cast<RocketTurret*>(turret);
+								tmp->Deactivate();
+							}
 							turret->Destroy();
 						}
 					}
@@ -540,7 +555,7 @@ void PlayScene::ConstructUI() {
 	// Buttons
 	ConstructButton(0, "play/turret-6.png", PlugGunTurret::Price);
 	ConstructButton(1, "play/turret-1.png", MachineGunTurret::Price);
-	// ConstructButton(1, "play/turret-2.png", LaserTurret::Price);
+	ConstructButton(2, "play/planet.png", RocketTurret::Price);
 	// ConstructButton(2, "play/turret-3.png", MissileTurret::Price);
 	// TurretButton* btn;
 	// Button 1
@@ -613,6 +628,8 @@ void PlayScene::UIBtnClicked(int id) {
 		preview = new PlugGunTurret(0, 0);
 	else if (id == 1 && money >= MachineGunTurret::Price)
 		preview = new MachineGunTurret(0, 0);
+	else if (id == 2 && money >= RocketTurret::Price)
+		preview = new RocketTurret(0, 0);
 	// if (id == 0 && money >= MachineGunTurret::Price)
 	// 	preview = new MachineGunTurret(0, 0);
 	// else if (id == 1 && money >= LaserTurret::Price)
