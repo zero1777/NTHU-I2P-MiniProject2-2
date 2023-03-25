@@ -79,7 +79,11 @@ void PlayScene::Initialize() {
 	deathBGMInstance = Engine::Resources::GetInstance().GetSampleInstance("astronomia.ogg");
 	Engine::Resources::GetInstance().GetBitmap("lose/benjamin-happy.png");
 	// Start BGM.
-	bgmId = AudioHelper::PlayBGM("play.ogg");
+	// bgmId = AudioHelper::PlayBGM("play.ogg");
+	if (!mute)
+        bgmInstance = AudioHelper::PlaySample("play.ogg", true, AudioHelper::BGMVolume);
+    else
+        bgmInstance = AudioHelper::PlaySample("play.ogg", true, 0.0);
 }
 void PlayScene::Terminate() {
 	AudioHelper::StopBGM(bgmId);
@@ -310,6 +314,14 @@ void PlayScene::OnKeyDown(int keyCode) {
 	else if (keyCode >= ALLEGRO_KEY_0 && keyCode <= ALLEGRO_KEY_9) {
 		// Hotkey for Speed up.
 		SpeedMult = keyCode - ALLEGRO_KEY_0;
+	}
+	else if (keyCode == ALLEGRO_KEY_M) {
+		// Hotkey for mute / unmute.
+        if (mute)
+            AudioHelper::ChangeSampleVolume(bgmInstance, AudioHelper::BGMVolume);
+        else
+            AudioHelper::ChangeSampleVolume(bgmInstance, 0.0);
+        mute = !mute;
 	}
 }
 void PlayScene::Hit() {
