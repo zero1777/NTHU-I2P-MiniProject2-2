@@ -26,6 +26,7 @@ private:
 	};
 	ALLEGRO_SAMPLE_ID bgmId;
 	std::shared_ptr<ALLEGRO_SAMPLE_INSTANCE> deathBGMInstance;
+	std::shared_ptr<ALLEGRO_SAMPLE_INSTANCE> bgmInstance;
 protected:
 	int lives;
 	int money;
@@ -39,6 +40,7 @@ public:
 	static const Engine::Point SpawnGridPoint;
 	static const Engine::Point EndGridPoint;
 	static const std::vector<int> code;
+	bool mute;
 	int MapId;
 	int viewType;
 	float ticks;
