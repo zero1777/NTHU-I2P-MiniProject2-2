@@ -26,7 +26,6 @@
 #include "SoldierEnemy.hpp"
 #include "RedNormalEnemy.hpp"
 #include "TankEnemy.hpp"
-#include "DiceOneEnemy.hpp"
 #include "PlayScene.hpp"
 #include "Resources.hpp"
 #include "Sprite.hpp"
@@ -169,8 +168,11 @@ void PlayScene::Update(float deltaTime) {
 		switch (current.first) {
 		case 1:
 			// EnemyGroup->AddNewObject(enemy = new SoldierEnemy(SpawnCoordinate.x, SpawnCoordinate.y));
-			EnemyGroup->AddNewObject(enemy = new DiceOneEnemy(SpawnCoordinate.x, SpawnCoordinate.y));
+			EnemyGroup->AddNewObject(enemy = new RedNormalEnemy(SpawnCoordinate.x, SpawnCoordinate.y));
 			break;
+		// TODO 2 (2/3): You need to modify 'resources/enemy1.txt', or 'resources/enemy2.txt' to spawn the new enemy.
+		// The format is "[EnemyId] [TimeDelay] [Repeat]".
+		// TODO 2 (3/3): Enable the creation of the new enemy.
 		// case 2:
 		// 	EnemyGroup->AddNewObject(enemy = new PlaneEnemy(SpawnCoordinate.x, SpawnCoordinate.y));
 		// 	break;
@@ -180,9 +182,9 @@ void PlayScene::Update(float deltaTime) {
 	// TODO 2 (7/8): You need to modify 'resources/enemy1.txt', or 'resources/enemy2.txt' to spawn the 4th enemy.
 	//         The format is "[EnemyId] [TimeDelay] [Repeat]".
 	// TODO 2 (8/8): Enable the creation of the 4th enemy.
-        case 4:
-            EnemyGroup->AddNewObject(enemy = new RedNormalEnemy(SpawnCoordinate.x, SpawnCoordinate.y));
-            break;
+        // case 4:
+        //     EnemyGroup->AddNewObject(enemy = new RedNormalEnemy(SpawnCoordinate.x, SpawnCoordinate.y));
+        //     break;
 		default:
 			continue;
 		}
