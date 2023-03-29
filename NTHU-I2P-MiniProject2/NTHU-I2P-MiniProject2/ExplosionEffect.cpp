@@ -8,6 +8,7 @@
 #include "PlayScene.hpp"
 #include "Resources.hpp"
 
+// TODO 4 (1/2): You can imitate the 2 files: 'ExplosionEffect.hpp', 'ExplosionEffect.cpp' to create shoot effect.
 PlayScene* ExplosionEffect::getPlayScene() {
 	return dynamic_cast<PlayScene*>(Engine::GameEngine::GetInstance().GetActiveScene());
 }
