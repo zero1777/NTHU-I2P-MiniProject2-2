@@ -18,7 +18,6 @@
 #include "Label.hpp"
 // Turret
 #include "LaserTurret.hpp"
-#include "MachineGunTurret.hpp"
 #include "MissileTurret.hpp"
 #include "PlugGunTurret.hpp"
 #include "Plane.hpp"
@@ -286,22 +285,13 @@ void PlayScene::OnKeyDown(int keyCode) {
 		// Earn money : money += 10000;
 	}
 	if (keyCode == ALLEGRO_KEY_Q) {
-		// Hotkey for MachineGunTurret.
+		// Hotkey for PlugGunTurret.
 		UIBtnClicked(0);
 	}
+	// TODO 3 (5/5): Make the W key to create the new turret.
 	else if (keyCode == ALLEGRO_KEY_W) {
-		// Hotkey for LaserTurret.
-		UIBtnClicked(1);
+		// Hotkey for new turret.
 	}
-	else if (keyCode == ALLEGRO_KEY_E) {
-		// Hotkey for MissileTurret.
-		UIBtnClicked(2);
-	}
-	// TODO 2 (5/8): Make the R key to create the 4th turret.
-    else if (keyCode == ALLEGRO_KEY_R) {
-        // Hotkey for PlugGunTurret
-        UIBtnClicked(3);
-    }
 	else if (keyCode >= ALLEGRO_KEY_0 && keyCode <= ALLEGRO_KEY_9) {
 		// Hotkey for Speed up.
 		SpeedMult = keyCode - ALLEGRO_KEY_0;
@@ -385,7 +375,8 @@ void PlayScene::ConstructUI() {
 	UIGroup->AddNewObject(UILives = new Engine::Label(std::string("Life ") + std::to_string(lives), "pirulen.ttf", 24, 1294, 88));
 	// Buttons
 	ConstructButton(0, "play/turret-6.png", PlugGunTurret::Price);
-	ConstructButton(1, "play/turret-1.png", MachineGunTurret::Price);
+	// TODO 3 (3/5): Create a button to support constructing the new turret.
+	// ConstructButton(1, "play/turret-1.png", MachineGunTurret::Price);
 	// ConstructButton(1, "play/turret-2.png", LaserTurret::Price);
 	// ConstructButton(2, "play/turret-3.png", MissileTurret::Price);
 	// TurretButton* btn;
@@ -446,8 +437,9 @@ void PlayScene::UIBtnClicked(int id) {
     }
 	if (id == 0 && money >= PlugGunTurret::Price) 
 		preview = new PlugGunTurret(0, 0);
-	else if (id == 1 && money >= MachineGunTurret::Price)
-		preview = new MachineGunTurret(0, 0);
+	// TODO 3 (4/5): On the new turret button callback, create the new turret.
+	// else if (id == 1 && money >= MachineGunTurret::Price)
+	// 	preview = new MachineGunTurret(0, 0);
 	// if (id == 0 && money >= MachineGunTurret::Price)
 	// 	preview = new MachineGunTurret(0, 0);
 	// else if (id == 1 && money >= LaserTurret::Price)
@@ -507,9 +499,6 @@ std::vector<std::vector<int>> PlayScene::CalculateBFSDistance() {
 	while (!que.empty()) {
 		Engine::Point p = que.front();
 		que.pop();
-		// TODO 3 (1/1): Implement a BFS starting from the most right-bottom block in the map.
-		//               For each step you should assign the corresponding distance to the most right-bottom block.
-		//               mapState[y][x] is TILE_DIRT if it is empty.
         for (auto &c : directions) {
             int x = p.x + c.x;
             int y = p.y + c.y;

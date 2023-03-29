@@ -36,7 +36,6 @@
 		DD4EC974298AB61900C0ACFA /* IControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC92B298AB61000C0ACFA /* IControl.cpp */; };
 		DD4EC975298AB61900C0ACFA /* LoseScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC92D298AB61000C0ACFA /* LoseScene.cpp */; };
 		DD4EC976298AB61900C0ACFA /* TurretButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC92E298AB61100C0ACFA /* TurretButton.cpp */; };
-		DD4EC977298AB61900C0ACFA /* FireBullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC932298AB61100C0ACFA /* FireBullet.cpp */; };
 		DD4EC978298AB61900C0ACFA /* Turret.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC933298AB61100C0ACFA /* Turret.cpp */; };
 		DD4EC979298AB61900C0ACFA /* IObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC93B298AB61200C0ACFA /* IObject.cpp */; };
 		DD4EC97A298AB61900C0ACFA /* resources in Resources */ = {isa = PBXBuildFile; fileRef = DD4EC93C298AB61300C0ACFA /* resources */; };
@@ -55,7 +54,6 @@
 		DD4EC987298AB61900C0ACFA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC94F298AB61500C0ACFA /* main.cpp */; };
 		DD4EC988298AB61900C0ACFA /* ImageButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC950298AB61500C0ACFA /* ImageButton.cpp */; };
 		DD4EC989298AB61900C0ACFA /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC954298AB61600C0ACFA /* Sprite.cpp */; };
-		DD4EC98A298AB61900C0ACFA /* MachineGunTurret.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC955298AB61600C0ACFA /* MachineGunTurret.cpp */; };
 		DD4EC98B298AB61900C0ACFA /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC959298AB61600C0ACFA /* Enemy.cpp */; };
 		DD4EC98C298AB61900C0ACFA /* PlaneEnemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC95A298AB61600C0ACFA /* PlaneEnemy.cpp */; };
 		DD4EC98D298AB61900C0ACFA /* DirtyEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC95C298AB61700C0ACFA /* DirtyEffect.cpp */; };
@@ -130,7 +128,6 @@
 		DD4EC92F298AB61100C0ACFA /* Bullet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Bullet.hpp; sourceTree = "<group>"; };
 		DD4EC930298AB61100C0ACFA /* TurretButton.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TurretButton.hpp; sourceTree = "<group>"; };
 		DD4EC931298AB61100C0ACFA /* GameEngine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameEngine.hpp; sourceTree = "<group>"; };
-		DD4EC932298AB61100C0ACFA /* FireBullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FireBullet.cpp; sourceTree = "<group>"; };
 		DD4EC933298AB61100C0ACFA /* Turret.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Turret.cpp; sourceTree = "<group>"; };
 		DD4EC934298AB61100C0ACFA /* LaserBullet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LaserBullet.hpp; sourceTree = "<group>"; };
 		DD4EC935298AB61100C0ACFA /* Slider.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Slider.hpp; sourceTree = "<group>"; };
@@ -141,7 +138,6 @@
 		DD4EC93A298AB61200C0ACFA /* SoldierEnemy.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SoldierEnemy.hpp; sourceTree = "<group>"; };
 		DD4EC93B298AB61200C0ACFA /* IObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IObject.cpp; sourceTree = "<group>"; };
 		DD4EC93C298AB61300C0ACFA /* resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = resources; sourceTree = "<group>"; };
-		DD4EC93D298AB61300C0ACFA /* FireBullet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FireBullet.hpp; sourceTree = "<group>"; };
 		DD4EC93E298AB61300C0ACFA /* Plane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Plane.cpp; sourceTree = "<group>"; };
 		DD4EC93F298AB61300C0ACFA /* DirtyEffect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DirtyEffect.hpp; sourceTree = "<group>"; };
 		DD4EC940298AB61300C0ACFA /* GameEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameEngine.cpp; sourceTree = "<group>"; };
@@ -165,7 +161,6 @@
 		DD4EC952298AB61500C0ACFA /* LaserTurret.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LaserTurret.hpp; sourceTree = "<group>"; };
 		DD4EC953298AB61600C0ACFA /* Image.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Image.hpp; sourceTree = "<group>"; };
 		DD4EC954298AB61600C0ACFA /* Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
-		DD4EC955298AB61600C0ACFA /* MachineGunTurret.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MachineGunTurret.cpp; sourceTree = "<group>"; };
 		DD4EC956298AB61600C0ACFA /* IScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IScene.hpp; sourceTree = "<group>"; };
 		DD4EC957298AB61600C0ACFA /* StageSelectScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StageSelectScene.hpp; sourceTree = "<group>"; };
 		DD4EC958298AB61600C0ACFA /* ExplosionEffect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ExplosionEffect.hpp; sourceTree = "<group>"; };
@@ -186,7 +181,6 @@
 		DD4EC967298AB61800C0ACFA /* Bullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bullet.cpp; sourceTree = "<group>"; };
 		DD4EC968298AB61800C0ACFA /* Image.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Image.cpp; sourceTree = "<group>"; };
 		DD4EC969298AB61800C0ACFA /* LOG.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LOG.cpp; sourceTree = "<group>"; };
-		DD4EC96A298AB61800C0ACFA /* MachineGunTurret.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MachineGunTurret.hpp; sourceTree = "<group>"; };
 		DD4EC96B298AB61800C0ACFA /* IScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IScene.cpp; sourceTree = "<group>"; };
 		DD4EC96C298AB61900C0ACFA /* ExplosionEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ExplosionEffect.cpp; sourceTree = "<group>"; };
 		DD4EC96D298AB61900C0ACFA /* Group.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Group.hpp; sourceTree = "<group>"; };
@@ -298,8 +292,6 @@
 				DD4EC960298AB61700C0ACFA /* Enemy.hpp */,
 				DD4EC96C298AB61900C0ACFA /* ExplosionEffect.cpp */,
 				DD4EC958298AB61600C0ACFA /* ExplosionEffect.hpp */,
-				DD4EC932298AB61100C0ACFA /* FireBullet.cpp */,
-				DD4EC93D298AB61300C0ACFA /* FireBullet.hpp */,
 				DD4EC940298AB61300C0ACFA /* GameEngine.cpp */,
 				DD4EC931298AB61100C0ACFA /* GameEngine.hpp */,
 				DD4EC970298AB61900C0ACFA /* Group.cpp */,
@@ -324,8 +316,6 @@
 				DD4EC949298AB61400C0ACFA /* LOG.hpp */,
 				DD4EC92D298AB61000C0ACFA /* LoseScene.cpp */,
 				DD4EC92C298AB61000C0ACFA /* LoseScene.hpp */,
-				DD4EC955298AB61600C0ACFA /* MachineGunTurret.cpp */,
-				DD4EC96A298AB61800C0ACFA /* MachineGunTurret.hpp */,
 				DD4EC94F298AB61500C0ACFA /* main.cpp */,
 				DD4EC945298AB61400C0ACFA /* MissileBullet.cpp */,
 				DD4EC937298AB61200C0ACFA /* MissileBullet.hpp */,
@@ -459,7 +449,6 @@
 				DD4EC989298AB61900C0ACFA /* Sprite.cpp in Sources */,
 				DD4EC99C298AB6D900C0ACFA /* StartScene.cpp in Sources */,
 				DD4EC996298AB61900C0ACFA /* ExplosionEffect.cpp in Sources */,
-				DD4EC977298AB61900C0ACFA /* FireBullet.cpp in Sources */,
 				DD4EC990298AB61900C0ACFA /* Slider.cpp in Sources */,
 				DD4EC98D298AB61900C0ACFA /* DirtyEffect.cpp in Sources */,
 				DD4EC98F298AB61900C0ACFA /* MissileTurret.cpp in Sources */,
@@ -489,7 +478,6 @@
 				DD4EC987298AB61900C0ACFA /* main.cpp in Sources */,
 				DD4EC993298AB61900C0ACFA /* Image.cpp in Sources */,
 				DD4EC983298AB61900C0ACFA /* LaserBullet.cpp in Sources */,
-				DD4EC98A298AB61900C0ACFA /* MachineGunTurret.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
