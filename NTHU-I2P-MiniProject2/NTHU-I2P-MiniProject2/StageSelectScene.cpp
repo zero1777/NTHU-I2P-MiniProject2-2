@@ -46,8 +46,8 @@ void StageSelectScene::Initialize() {
     sliderSFX->SetValue(AudioHelper::SFXVolume);
 }
 void StageSelectScene::Terminate() {
-	// AudioHelper::StopSample(bgmInstance);
-	// bgmInstance = std::shared_ptr<ALLEGRO_SAMPLE_INSTANCE>();
+	AudioHelper::StopSample(bgmInstance);
+	bgmInstance = std::shared_ptr<ALLEGRO_SAMPLE_INSTANCE>();
 	IScene::Terminate();
 }
 void StageSelectScene::PlayOnClick(int stage) {
