@@ -9,7 +9,7 @@
 #include "Point.hpp"
 
 void StartScene::Initialize() {
-    // TODO 1 (2/2): You can imitate the 2 files: 'LoseScene.hpp', 'LoseScene.cpp' to implement your start scene.
+    // TODO 1 (1/7): You can imitate the 2 files: 'StartScene.hpp', 'StartScene.cpp' to implement your setting scene.
     int w = Engine::GameEngine::GetInstance().GetScreenSize().x;
     int h = Engine::GameEngine::GetInstance().GetScreenSize().y;
     int halfW = w / 2;
