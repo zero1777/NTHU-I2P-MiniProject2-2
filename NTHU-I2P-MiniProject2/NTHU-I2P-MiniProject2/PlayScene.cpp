@@ -47,7 +47,7 @@ Engine::Point PlayScene::GetClientSize() {
 }
 void PlayScene::Initialize() {
 	// TODO 5 (1/2): There's a bug in this file, which crashes the game when you win. Try to find it.
-	// TODO 5 (2/2): There's a cheat code in this file. Try to find it.
+	// TODO 5 (2/2): There's a bug in this file, which doesn't update the player's life correctly when getting the first attack. Try to find it.
 	mapState.clear();
 	keyStrokes.clear();
 	ticks = 0;
@@ -141,7 +141,6 @@ void PlayScene::Update(float deltaTime) {
 		if (enemyWaveData.empty()) {
 			if (EnemyGroup->GetObjects().empty()) {
 				// Free resources.
-                /*
 				delete TileMapGroup;
 				delete GroundEffectGroup;
 				delete DebugIndicatorGroup;
@@ -151,10 +150,7 @@ void PlayScene::Update(float deltaTime) {
 				delete EffectGroup;
 				delete UIGroup;
 				delete imgTarget;
-                */
-				// Win.
-				// TODO 5
-				Engine::GameEngine::GetInstance().ChangeScene("win");
+                Engine::GameEngine::GetInstance().ChangeScene("win-scene");
 			}
 			continue;
 		}
@@ -308,8 +304,8 @@ void PlayScene::OnKeyDown(int keyCode) {
 	}
 }
 void PlayScene::Hit() {
-	UILives->Text = std::string("Life ") + std::to_string(lives);
-	lives--;
+	UILives->Text = std::string("Life ") + std::to_string(lives--);
+	// lives--;
 	if (lives <= 0) {
 		Engine::GameEngine::GetInstance().ChangeScene("lose");
 	}
