@@ -41,24 +41,17 @@
 		DD4EC97A298AB61900C0ACFA /* resources in Resources */ = {isa = PBXBuildFile; fileRef = DD4EC93C298AB61300C0ACFA /* resources */; };
 		DD4EC97B298AB61900C0ACFA /* Plane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC93E298AB61300C0ACFA /* Plane.cpp */; };
 		DD4EC97C298AB61900C0ACFA /* GameEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC940298AB61300C0ACFA /* GameEngine.cpp */; };
-		DD4EC97D298AB61900C0ACFA /* LaserTurret.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC941298AB61300C0ACFA /* LaserTurret.cpp */; };
-		DD4EC97E298AB61900C0ACFA /* TankEnemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC942298AB61300C0ACFA /* TankEnemy.cpp */; };
 		DD4EC97F298AB61900C0ACFA /* Label.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC944298AB61400C0ACFA /* Label.cpp */; };
-		DD4EC980298AB61900C0ACFA /* MissileBullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC945298AB61400C0ACFA /* MissileBullet.cpp */; };
 		DD4EC981298AB61900C0ACFA /* StageSelectScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC946298AB61400C0ACFA /* StageSelectScene.cpp */; };
 		DD4EC982298AB61900C0ACFA /* WinScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC948298AB61400C0ACFA /* WinScene.cpp */; };
-		DD4EC983298AB61900C0ACFA /* LaserBullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC94B298AB61500C0ACFA /* LaserBullet.cpp */; };
 		DD4EC984298AB61900C0ACFA /* PlayScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC94C298AB61500C0ACFA /* PlayScene.cpp */; };
 		DD4EC985298AB61900C0ACFA /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC94D298AB61500C0ACFA /* Point.cpp */; };
-		DD4EC986298AB61900C0ACFA /* SoldierEnemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC94E298AB61500C0ACFA /* SoldierEnemy.cpp */; };
 		DD4EC987298AB61900C0ACFA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC94F298AB61500C0ACFA /* main.cpp */; };
 		DD4EC988298AB61900C0ACFA /* ImageButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC950298AB61500C0ACFA /* ImageButton.cpp */; };
 		DD4EC989298AB61900C0ACFA /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC954298AB61600C0ACFA /* Sprite.cpp */; };
 		DD4EC98B298AB61900C0ACFA /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC959298AB61600C0ACFA /* Enemy.cpp */; };
-		DD4EC98C298AB61900C0ACFA /* PlaneEnemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC95A298AB61600C0ACFA /* PlaneEnemy.cpp */; };
 		DD4EC98D298AB61900C0ACFA /* DirtyEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC95C298AB61700C0ACFA /* DirtyEffect.cpp */; };
 		DD4EC98E298AB61900C0ACFA /* Allegro5Exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC95E298AB61700C0ACFA /* Allegro5Exception.cpp */; };
-		DD4EC98F298AB61900C0ACFA /* MissileTurret.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC95F298AB61700C0ACFA /* MissileTurret.cpp */; };
 		DD4EC990298AB61900C0ACFA /* Slider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC961298AB61700C0ACFA /* Slider.cpp */; };
 		DD4EC991298AB61900C0ACFA /* AudioHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC965298AB61800C0ACFA /* AudioHelper.cpp */; };
 		DD4EC992298AB61900C0ACFA /* Bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4EC967298AB61800C0ACFA /* Bullet.cpp */; };
@@ -127,48 +120,34 @@
 		DD4EC930298AB61100C0ACFA /* TurretButton.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TurretButton.hpp; sourceTree = "<group>"; };
 		DD4EC931298AB61100C0ACFA /* GameEngine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameEngine.hpp; sourceTree = "<group>"; };
 		DD4EC933298AB61100C0ACFA /* Turret.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Turret.cpp; sourceTree = "<group>"; };
-		DD4EC934298AB61100C0ACFA /* LaserBullet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LaserBullet.hpp; sourceTree = "<group>"; };
 		DD4EC935298AB61100C0ACFA /* Slider.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Slider.hpp; sourceTree = "<group>"; };
 		DD4EC936298AB61200C0ACFA /* Label.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Label.hpp; sourceTree = "<group>"; };
-		DD4EC937298AB61200C0ACFA /* MissileBullet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MissileBullet.hpp; sourceTree = "<group>"; };
 		DD4EC938298AB61200C0ACFA /* Collider.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Collider.hpp; sourceTree = "<group>"; };
 		DD4EC939298AB61200C0ACFA /* AudioHelper.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AudioHelper.hpp; sourceTree = "<group>"; };
-		DD4EC93A298AB61200C0ACFA /* SoldierEnemy.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SoldierEnemy.hpp; sourceTree = "<group>"; };
 		DD4EC93B298AB61200C0ACFA /* IObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IObject.cpp; sourceTree = "<group>"; };
 		DD4EC93C298AB61300C0ACFA /* resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = resources; sourceTree = "<group>"; };
 		DD4EC93E298AB61300C0ACFA /* Plane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Plane.cpp; sourceTree = "<group>"; };
 		DD4EC93F298AB61300C0ACFA /* DirtyEffect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DirtyEffect.hpp; sourceTree = "<group>"; };
 		DD4EC940298AB61300C0ACFA /* GameEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameEngine.cpp; sourceTree = "<group>"; };
-		DD4EC941298AB61300C0ACFA /* LaserTurret.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LaserTurret.cpp; sourceTree = "<group>"; };
-		DD4EC942298AB61300C0ACFA /* TankEnemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TankEnemy.cpp; sourceTree = "<group>"; };
 		DD4EC943298AB61400C0ACFA /* PlayScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PlayScene.hpp; sourceTree = "<group>"; };
 		DD4EC944298AB61400C0ACFA /* Label.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Label.cpp; sourceTree = "<group>"; };
-		DD4EC945298AB61400C0ACFA /* MissileBullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MissileBullet.cpp; sourceTree = "<group>"; };
 		DD4EC946298AB61400C0ACFA /* StageSelectScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StageSelectScene.cpp; sourceTree = "<group>"; };
 		DD4EC947298AB61400C0ACFA /* Sprite.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Sprite.hpp; sourceTree = "<group>"; };
 		DD4EC948298AB61400C0ACFA /* WinScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WinScene.cpp; sourceTree = "<group>"; };
 		DD4EC949298AB61400C0ACFA /* LOG.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LOG.hpp; sourceTree = "<group>"; };
 		DD4EC94A298AB61400C0ACFA /* Plane.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Plane.hpp; sourceTree = "<group>"; };
-		DD4EC94B298AB61500C0ACFA /* LaserBullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LaserBullet.cpp; sourceTree = "<group>"; };
 		DD4EC94C298AB61500C0ACFA /* PlayScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayScene.cpp; sourceTree = "<group>"; };
 		DD4EC94D298AB61500C0ACFA /* Point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Point.cpp; sourceTree = "<group>"; };
-		DD4EC94E298AB61500C0ACFA /* SoldierEnemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoldierEnemy.cpp; sourceTree = "<group>"; };
 		DD4EC94F298AB61500C0ACFA /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		DD4EC950298AB61500C0ACFA /* ImageButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImageButton.cpp; sourceTree = "<group>"; };
-		DD4EC951298AB61500C0ACFA /* MissileTurret.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MissileTurret.hpp; sourceTree = "<group>"; };
-		DD4EC952298AB61500C0ACFA /* LaserTurret.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LaserTurret.hpp; sourceTree = "<group>"; };
 		DD4EC953298AB61600C0ACFA /* Image.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Image.hpp; sourceTree = "<group>"; };
 		DD4EC954298AB61600C0ACFA /* Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
 		DD4EC956298AB61600C0ACFA /* IScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IScene.hpp; sourceTree = "<group>"; };
 		DD4EC957298AB61600C0ACFA /* StageSelectScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StageSelectScene.hpp; sourceTree = "<group>"; };
 		DD4EC958298AB61600C0ACFA /* ExplosionEffect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ExplosionEffect.hpp; sourceTree = "<group>"; };
 		DD4EC959298AB61600C0ACFA /* Enemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Enemy.cpp; sourceTree = "<group>"; };
-		DD4EC95A298AB61600C0ACFA /* PlaneEnemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlaneEnemy.cpp; sourceTree = "<group>"; };
-		DD4EC95B298AB61600C0ACFA /* TankEnemy.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TankEnemy.hpp; sourceTree = "<group>"; };
 		DD4EC95C298AB61700C0ACFA /* DirtyEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DirtyEffect.cpp; sourceTree = "<group>"; };
-		DD4EC95D298AB61700C0ACFA /* PlaneEnemy.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PlaneEnemy.hpp; sourceTree = "<group>"; };
 		DD4EC95E298AB61700C0ACFA /* Allegro5Exception.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Allegro5Exception.cpp; sourceTree = "<group>"; };
-		DD4EC95F298AB61700C0ACFA /* MissileTurret.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MissileTurret.cpp; sourceTree = "<group>"; };
 		DD4EC960298AB61700C0ACFA /* Enemy.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Enemy.hpp; sourceTree = "<group>"; };
 		DD4EC961298AB61700C0ACFA /* Slider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Slider.cpp; sourceTree = "<group>"; };
 		DD4EC962298AB61700C0ACFA /* Turret.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Turret.hpp; sourceTree = "<group>"; };
@@ -298,23 +277,13 @@
 				DD4EC956298AB61600C0ACFA /* IScene.hpp */,
 				DD4EC944298AB61400C0ACFA /* Label.cpp */,
 				DD4EC936298AB61200C0ACFA /* Label.hpp */,
-				DD4EC94B298AB61500C0ACFA /* LaserBullet.cpp */,
-				DD4EC934298AB61100C0ACFA /* LaserBullet.hpp */,
-				DD4EC941298AB61300C0ACFA /* LaserTurret.cpp */,
-				DD4EC952298AB61500C0ACFA /* LaserTurret.hpp */,
 				DD4EC969298AB61800C0ACFA /* LOG.cpp */,
 				DD4EC949298AB61400C0ACFA /* LOG.hpp */,
 				DD4EC92D298AB61000C0ACFA /* LoseScene.cpp */,
 				DD4EC92C298AB61000C0ACFA /* LoseScene.hpp */,
 				DD4EC94F298AB61500C0ACFA /* main.cpp */,
-				DD4EC945298AB61400C0ACFA /* MissileBullet.cpp */,
-				DD4EC937298AB61200C0ACFA /* MissileBullet.hpp */,
-				DD4EC95F298AB61700C0ACFA /* MissileTurret.cpp */,
-				DD4EC951298AB61500C0ACFA /* MissileTurret.hpp */,
 				DD4EC93E298AB61300C0ACFA /* Plane.cpp */,
 				DD4EC94A298AB61400C0ACFA /* Plane.hpp */,
-				DD4EC95A298AB61600C0ACFA /* PlaneEnemy.cpp */,
-				DD4EC95D298AB61700C0ACFA /* PlaneEnemy.hpp */,
 				DD4EC94C298AB61500C0ACFA /* PlayScene.cpp */,
 				DD4EC943298AB61400C0ACFA /* PlayScene.hpp */,
 				DD4EC94D298AB61500C0ACFA /* Point.cpp */,
@@ -324,14 +293,10 @@
 				DD4EC971298AB61900C0ACFA /* Resources.hpp */,
 				DD4EC961298AB61700C0ACFA /* Slider.cpp */,
 				DD4EC935298AB61100C0ACFA /* Slider.hpp */,
-				DD4EC94E298AB61500C0ACFA /* SoldierEnemy.cpp */,
-				DD4EC93A298AB61200C0ACFA /* SoldierEnemy.hpp */,
 				DD4EC954298AB61600C0ACFA /* Sprite.cpp */,
 				DD4EC947298AB61400C0ACFA /* Sprite.hpp */,
 				DD4EC946298AB61400C0ACFA /* StageSelectScene.cpp */,
 				DD4EC957298AB61600C0ACFA /* StageSelectScene.hpp */,
-				DD4EC942298AB61300C0ACFA /* TankEnemy.cpp */,
-				DD4EC95B298AB61600C0ACFA /* TankEnemy.hpp */,
 				DD4EC933298AB61100C0ACFA /* Turret.cpp */,
 				DD4EC962298AB61700C0ACFA /* Turret.hpp */,
 				DD4EC92E298AB61100C0ACFA /* TurretButton.cpp */,
@@ -432,7 +397,6 @@
 				DD4EC9A2298C017500C0ACFA /* PlugGunTurret.cpp in Sources */,
 				DD4EC975298AB61900C0ACFA /* LoseScene.cpp in Sources */,
 				DD4EC97B298AB61900C0ACFA /* Plane.cpp in Sources */,
-				DD4EC986298AB61900C0ACFA /* SoldierEnemy.cpp in Sources */,
 				DD4EC982298AB61900C0ACFA /* WinScene.cpp in Sources */,
 				DD4EC981298AB61900C0ACFA /* StageSelectScene.cpp in Sources */,
 				DD4EC989298AB61900C0ACFA /* Sprite.cpp in Sources */,
@@ -440,18 +404,15 @@
 				DD4EC996298AB61900C0ACFA /* ExplosionEffect.cpp in Sources */,
 				DD4EC990298AB61900C0ACFA /* Slider.cpp in Sources */,
 				DD4EC98D298AB61900C0ACFA /* DirtyEffect.cpp in Sources */,
-				DD4EC98F298AB61900C0ACFA /* MissileTurret.cpp in Sources */,
 				DD4EC991298AB61900C0ACFA /* AudioHelper.cpp in Sources */,
 				DD4EC974298AB61900C0ACFA /* IControl.cpp in Sources */,
 				DD4EC979298AB61900C0ACFA /* IObject.cpp in Sources */,
-				DD4EC98C298AB61900C0ACFA /* PlaneEnemy.cpp in Sources */,
 				DD4EC97F298AB61900C0ACFA /* Label.cpp in Sources */,
 				DD4EC997298AB61900C0ACFA /* Collider.cpp in Sources */,
 				DD4EC998298AB61900C0ACFA /* Resources.cpp in Sources */,
 				DD4EC995298AB61900C0ACFA /* IScene.cpp in Sources */,
 				DD4EC992298AB61900C0ACFA /* Bullet.cpp in Sources */,
 				DD4EC99F298BFAEC00C0ACFA /* WoodBullet.cpp in Sources */,
-				DD4EC97E298AB61900C0ACFA /* TankEnemy.cpp in Sources */,
 				DD4EC988298AB61900C0ACFA /* ImageButton.cpp in Sources */,
 				DD4EC97C298AB61900C0ACFA /* GameEngine.cpp in Sources */,
 				DD4EC976298AB61900C0ACFA /* TurretButton.cpp in Sources */,
@@ -459,13 +420,10 @@
 				DD4EC98E298AB61900C0ACFA /* Allegro5Exception.cpp in Sources */,
 				DD4EC985298AB61900C0ACFA /* Point.cpp in Sources */,
 				DD4EC9A5298C0D2900C0ACFA /* RedNormalEnemy.cpp in Sources */,
-				DD4EC980298AB61900C0ACFA /* MissileBullet.cpp in Sources */,
 				DD4EC984298AB61900C0ACFA /* PlayScene.cpp in Sources */,
 				DD4EC978298AB61900C0ACFA /* Turret.cpp in Sources */,
-				DD4EC97D298AB61900C0ACFA /* LaserTurret.cpp in Sources */,
 				DD4EC987298AB61900C0ACFA /* main.cpp in Sources */,
 				DD4EC993298AB61900C0ACFA /* Image.cpp in Sources */,
-				DD4EC983298AB61900C0ACFA /* LaserBullet.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

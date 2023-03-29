@@ -51,18 +51,14 @@ void StageSelectScene::Terminate() {
 	IScene::Terminate();
 }
 void StageSelectScene::PlayOnClick(int stage) {
-    if (stage == 3) {
-        Engine::GameEngine::GetInstance().ChangeScene("setting");
-        return;
-    }
     PlayScene* scene = dynamic_cast<PlayScene*>(Engine::GameEngine::GetInstance().GetScene("play"));
     scene->MapId = stage;
     Engine::GameEngine::GetInstance().ChangeScene("play");
 }
 void StageSelectScene::BGMSlideOnValueChanged(float value) {
-    // AudioHelper::ChangeSampleVolume(bgmInstance, value);
-    // AudioHelper::BGMVolume = value;
+    AudioHelper::ChangeSampleVolume(bgmInstance, value);
+    AudioHelper::BGMVolume = value;
 }
 void StageSelectScene::SFXSlideOnValueChanged(float value) {
-    // AudioHelper::SFXVolume = value;
+    AudioHelper::SFXVolume = value;
 }
