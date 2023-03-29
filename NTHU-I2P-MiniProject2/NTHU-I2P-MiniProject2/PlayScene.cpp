@@ -46,8 +46,8 @@ Engine::Point PlayScene::GetClientSize() {
 	return Engine::Point(MapWidth * BlockSize, MapHeight * BlockSize);
 }
 void PlayScene::Initialize() {
-	// TODO 5 (1/2): There's a bug in this file, which crashes the game when you win. Try to find it.
-	// TODO 5 (2/2): There's a bug in this file, which doesn't update the player's life correctly when getting the first attack. Try to find it.
+	// TODO 6 (1/2): There's a bug in this file, which crashes the game when you win. Try to find it.
+	// TODO 6 (2/2): There's a bug in this file, which doesn't update the player's life correctly when getting the first attack. Try to find it.
 	mapState.clear();
 	keyStrokes.clear();
 	ticks = 0;
