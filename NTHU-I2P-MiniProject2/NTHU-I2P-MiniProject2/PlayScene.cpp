@@ -42,14 +42,15 @@ const int PlayScene::BlockSize = 64;
 const float PlayScene::DangerTime = 7.61;
 const Engine::Point PlayScene::SpawnGridPoint = Engine::Point(-1, 0);
 const Engine::Point PlayScene::EndGridPoint = Engine::Point(MapWidth, MapHeight - 1);
+// TODO 5 (2/3): Set the cheat code correctly.
 const std::vector<int> PlayScene::code = { ALLEGRO_KEY_UP, ALLEGRO_KEY_DOWN, ALLEGRO_KEY_LEFT, ALLEGRO_KEY_RIGHT,
 									ALLEGRO_KEY_LEFT, ALLEGRO_KEY_RIGHT, ALLEGRO_KEY_ENTER };
 Engine::Point PlayScene::GetClientSize() {
 	return Engine::Point(MapWidth * BlockSize, MapHeight * BlockSize);
 }
 void PlayScene::Initialize() {
-	// TODO 5 (1/2): There's a bug in this file, which crashes the game when you win. Try to find it.
-	// TODO 5 (2/2): There's a cheat code in this file. Try to find it.
+	// TODO 6 (1/2): There's a bug in this file, which crashes the game when you win. Try to find it.
+	// TODO 6 (2/2): There's a bug in this file, which doesn't update the player's life correctly when getting the first attack. Try to find it.
 	mapState.clear();
 	keyStrokes.clear();
 	ticks = 0;
@@ -155,7 +156,6 @@ void PlayScene::Update(float deltaTime) {
 				delete imgTarget;
                 */
 				// Win.
-				// TODO 5
 				Engine::GameEngine::GetInstance().ChangeScene("win");
 			}
 			continue;
@@ -178,9 +178,9 @@ void PlayScene::Update(float deltaTime) {
 		// case 3:
 		// 	EnemyGroup->AddNewObject(enemy = new TankEnemy(SpawnCoordinate.x, SpawnCoordinate.y));
 		// 	break;
-	// TODO 2 (7/8): You need to modify 'resources/enemy1.txt', or 'resources/enemy2.txt' to spawn the 4th enemy.
-	//         The format is "[EnemyId] [TimeDelay] [Repeat]".
-	// TODO 2 (8/8): Enable the creation of the 4th enemy.
+		// TODO 2 (2/3): You need to modify 'resources/enemy1.txt', or 'resources/enemy2.txt' to spawn the new enemy.
+		// The format is "[EnemyId] [TimeDelay] [Repeat]".
+		// TODO 2 (3/3): Enable the creation of the new enemy.
         case 4:
             EnemyGroup->AddNewObject(enemy = new RedNormalEnemy(SpawnCoordinate.x, SpawnCoordinate.y));
             break;
@@ -275,12 +275,16 @@ void PlayScene::OnMouseUp(int button, int mx, int my) {
 void PlayScene::OnKeyDown(int keyCode) {
 	IScene::OnKeyDown(keyCode);
 	if (keyCode == ALLEGRO_KEY_TAB) {
+		// TODO 5 (1/3): Set Tab as a code to active / de-active the debug mode.
 		DebugMode = !DebugMode;
 	}
 	else {
 		keyStrokes.push_back(keyCode);
 		if (keyStrokes.size() > code.size())
 			keyStrokes.pop_front();
+		// TODO 5 (3/3): Check whether the input sequence corresponds to the code. If so, active a plane and earn 10000 money.
+        // Active a plane : EffectGroup->AddNewObject(new Plane());
+		// Earn money : money += 10000;
 		if (keyCode == ALLEGRO_KEY_ENTER && keyStrokes.size() == code.size()) {
 			auto it = keyStrokes.begin();
 			for (int c : code) {
@@ -298,6 +302,7 @@ void PlayScene::OnKeyDown(int keyCode) {
 		// Hotkey for MachineGunTurret.
 		UIBtnClicked(0);
 	}
+	// TODO 3 (5/5): Make the W key to create the new turret.
 	else if (keyCode == ALLEGRO_KEY_W) {
 		// Hotkey for LaserTurret.
 		UIBtnClicked(1);
@@ -306,7 +311,6 @@ void PlayScene::OnKeyDown(int keyCode) {
 		// Hotkey for MissileTurret.
 		UIBtnClicked(2);
 	}
-	// TODO 2 (5/8): Make the R key to create the 4th turret.
     else if (keyCode == ALLEGRO_KEY_R) {
         // Hotkey for PlugGunTurret
         UIBtnClicked(3);
@@ -394,6 +398,7 @@ void PlayScene::ConstructUI() {
 	UIGroup->AddNewObject(UILives = new Engine::Label(std::string("Life ") + std::to_string(lives), "pirulen.ttf", 24, 1294, 88));
 	// Buttons
 	ConstructButton(0, "play/turret-6.png", PlugGunTurret::Price);
+	// TODO 3 (3/5): Create a button to support constructing the new turret.
 	ConstructButton(1, "play/turret-1.png", MachineGunTurret::Price);
 	// ConstructButton(1, "play/turret-2.png", LaserTurret::Price);
 	// ConstructButton(2, "play/turret-3.png", MissileTurret::Price);
@@ -420,7 +425,6 @@ void PlayScene::ConstructUI() {
 	// 	, 1446, 136, MissileTurret::Price);
 	// btn->SetOnClickCallback(std::bind(&PlayScene::UIBtnClicked, this, 2));
 	// UIGroup->AddNewControlObject(btn);
-	// // TODO 2 (3/8): Create a button to support constructing the 4th tower.
     // // Button 4
     // btn = new TurretButton("play/floor.png", "play/dirt.png",
     //         Engine::Sprite("play/tower-base.png", 1522, 136, 0, 0, 0, 0),
@@ -455,6 +459,7 @@ void PlayScene::UIBtnClicked(int id) {
     }
 	if (id == 0 && money >= PlugGunTurret::Price) 
 		preview = new PlugGunTurret(0, 0);
+	// TODO 3 (4/5): On the new turret button callback, create the new turret.
 	else if (id == 1 && money >= MachineGunTurret::Price)
 		preview = new MachineGunTurret(0, 0);
 	// if (id == 0 && money >= MachineGunTurret::Price)
@@ -463,7 +468,6 @@ void PlayScene::UIBtnClicked(int id) {
 	// 	preview = new LaserTurret(0, 0);
 	// else if (id == 2 && money >= MissileTurret::Price)
 	// 	preview = new MissileTurret(0, 0);
-    // // TODO 2 (4/8): On callback, create the 4th tower.
     // else if (id == 3 && money >= PlugGunTurret::Price)
     //     preview = new PlugGunTurret(0, 0);
 	if (!preview)
@@ -516,9 +520,6 @@ std::vector<std::vector<int>> PlayScene::CalculateBFSDistance() {
 	while (!que.empty()) {
 		Engine::Point p = que.front();
 		que.pop();
-		// TODO 3 (1/1): Implement a BFS starting from the most right-bottom block in the map.
-		//               For each step you should assign the corresponding distance to the most right-bottom block.
-		//               mapState[y][x] is TILE_DIRT if it is empty.
         for (auto &c : directions) {
             int x = p.x + c.x;
             int y = p.y + c.y;

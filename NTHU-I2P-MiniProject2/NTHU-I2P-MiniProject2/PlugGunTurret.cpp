@@ -12,7 +12,7 @@
 
 const int PlugGunTurret::Price = 40;
 PlugGunTurret::PlugGunTurret(float x, float y) :
-    // TODO 2 (2/8): You can imitate the 2 files: 'MachineGunTurret.hpp', 'MachineGunTurret.cpp' to create a new turret.
+    // TODO 3 (1/5): You can imitate the 2 files: 'PlugGunTurret.hpp', 'PlugGunTurret.cpp' to create a new turret.  
     Turret("play/tower-base.png", "play/turret-6.png", x, y, 200, Price, 1.5) {
     // Move center downward, since we the turret head is slightly biased upward
     Anchor.y += 8.0f / GetBitmapHeight();
@@ -23,7 +23,7 @@ void PlugGunTurret::CreateBullet() {
     Engine::Point normalized = diff.Normalize();
     // Change bullet position to the front of the gun barrel.
     getPlayScene()->BulletGroup->AddNewObject(new WoodBullet(Position + normalized * 36, diff, rotation, this));
-    // TODO 3
+    // TODO 4 (2/2): Add a ShootEffect here. Remember you need to include the class.
     getPlayScene()->EffectGroup->AddNewObject(new ShootEffect((Position + normalized * 36).x, (Position + normalized * 36).y));
     AudioHelper::PlayAudio("gun.wav");
 }
