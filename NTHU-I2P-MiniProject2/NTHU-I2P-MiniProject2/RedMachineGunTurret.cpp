@@ -9,9 +9,9 @@
 #include "PlayScene.hpp"
 #include "Point.hpp"
 
+// TODO 2 (new turret)
 const int RedMachineGunTurret::Price = 90;
 RedMachineGunTurret::RedMachineGunTurret(float x, float y) :
-	// TODO 2 (2/8): You can imitate the 2 files: 'MachineGunTurret.hpp', 'MachineGunTurret.cpp' to create a new turret.
 	Turret("play/tower-base.png", "play/turret-2.png", x, y, 300, Price, 1, 2) {
 	// Move center downward, since we the turret head is slightly biased upward.
 	Anchor.y += 8.0f / GetBitmapHeight();

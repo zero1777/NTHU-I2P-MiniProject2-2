@@ -9,9 +9,10 @@
 #include "PlayScene.hpp"
 #include "Point.hpp"
 
+// TODO 3 (new turret with bullets moving in circular orbit)
+
 const int RocketTurret::Price = 90;
 RocketTurret::RocketTurret(float x, float y) :
-	// TODO 2 (2/8): You can imitate the 2 files: 'MachineGunTurret.hpp', 'MachineGunTurret.cpp' to create a new turret.
 	Turret("play/tower-base.png", "play/planet.png", x, y, 200, Price, 1, 3), period(5), ammo(bulletNum) {
 	// Move center downward, since we the turret head is slightly biased upward.
 	Anchor.y += 8.0f / GetBitmapHeight();

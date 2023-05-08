@@ -8,6 +8,7 @@
 #include "LOG.hpp"
 #include <string>
 
+// TODO 1 (new enemy)
 DiceTwoEnemy::DiceTwoEnemy(int x, int y) : Enemy("play/dice-2.png", x, y, 20, 35, 7, 7) {}
 
 void DiceTwoEnemy::Hit(float damage) {

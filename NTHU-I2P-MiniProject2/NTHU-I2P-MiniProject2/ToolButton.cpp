@@ -5,6 +5,7 @@
 #include "PlayScene.hpp"
 #include "ToolButton.hpp"
 
+// TODO 4, 5 (shovel and shifter)
 PlayScene* ToolButton::getPlayScene() {
 	return dynamic_cast<PlayScene*>(Engine::GameEngine::GetInstance().GetActiveScene());
 }

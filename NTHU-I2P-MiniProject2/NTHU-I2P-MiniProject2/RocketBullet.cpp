@@ -18,7 +18,6 @@ class Turret;
 RocketBullet::RocketBullet(Engine::Point position, Engine::Point forwardDirection, float rotation, Turret* parent, float radius, float period, Engine::Point coord, int id) :
     Bullet("play/virus.png", 10, 0.5, position, forwardDirection, rotation + ALLEGRO_PI / 2, parent), 
 	radius(radius), period(period), parent(parent), coord(coord), id(id) {
-    // TODO 2 (1/8): You can imitate the 2 files: 'FireBullet.hpp', 'FireBullet.cpp' to create a new bullet.
 }
 void RocketBullet::Update(float deltaTime) {
 	// Update the coordinate of the bullet  
