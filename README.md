@@ -19,4 +19,5 @@ Follow the step [here](https://github.com/j3soon/Allegro5Template/blob/master/do
 
 ## Demo
 There are some detailed demo videos in the demos/ folder for the todos.
+
 [Hackathon demo](demos/Hackathon-demo.mp4)
